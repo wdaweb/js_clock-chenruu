@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時鐘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .track {
+            width: 100%;
+            height: 250px;
+            background: gray;
+            position: fixed;
+            top: 75%;
+            transform: rotate(-8deg);
+        }
+
+        .line {
+            width: inherit;
+            height: 10px;
+            background: white;
+            position: fixed;
+            bottom: 5%;
+        }
+
+        .line::before {
+            content: "";
+            width: inherit;
+            height: 10px;
+            background: white;
+            position: fixed;
+            bottom: 90%;
+        }
+
+        .line::after {
+            content: "";
+            width: inherit;
+            height: 1px;
+            border: 10px dashed white;
+            position: fixed;
+            bottom: 40%;
+        }
+
+        .fly {
+            width: 1000px;
+            height: 600px;
+            background: url('飛機2.png') no-repeat;
+            position: absolute;
+            top: 60%;
+            left: 0;
+            transform: rotate(-10deg);
+            animation-name: plant;
+            animation-duration: 10s;
+
+        }
+
+
+
+        @keyframes plant {
+            from {
+                left: 0;
+            }
+
+            to {
+                transform: translate(110%, -130%);
+            }
+        }
+
+        time {
+            width: 100px;
+            height: 50px;
+            background: red;
+        }
+
+        #time {
+            position: absolute;
+            top: 39%;
+            left: 34%;
+            margin: auto;
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: rgb(54, 17, 221);
+            transform: rotate(-10deg);
+            text-shadow: -1px -1px white, 1px 1px #333;
+        }
+
+        .cloud {
+            width: 100%;
+            height: 25%;
+            background: url('雲.png') repeat;
+            position: absolute;
+            top: 0;
+            z-index: 9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cloud"></div>
+    <div class="track">
+        <div class="line"></div>
+    </div>
+
+    <div class="fly" value="點" id="btn">
+        <p id="time"></p>
+    </div>
+
+
+
+    <script>
+        let now = new Date()
+        btn.onclick = (element) => {
+            let hour = now.getHours()
+            let min = now.getMinutes()
+            if (hour.toString().length == 1) {
+                hour = "0" + hour
+            } else if (min.toString().length == 1) {
+                min = "0" + min;
+            }
+            let str = hour + ":" + min
+            document.getElementById("time").innerHTML = str
+
+        }
+    </script>
+
+</body>
+
+</html>
